@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Socket Test</title>
+</head>
+
+<body>
+    <form id="form">
+        <input type="text" id="input" />
+    </form>
+
+    <button id="editModeButton" type="button">ENTER EDIT MODE</button>
+
+    <div contenteditable="false" id="messageBox"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const form = document.getElementById('form');
+        const input = document.getElementById('input');
+        const messageBox = document.getElementById('messageBox');
+        const editModeButton = document.getElementById('editModeButton');
+        const confirmEditButton = document.getElementById('confirmEditButton');
+        const socket = io();
+
+        socket.emit('join_room', 1);
+
+        form.onsubmit = e => {
+            e.preventDefault();
+            socket.emit('message', input.value);
+            input.value = '';
+        };
+
+        editModeButton.onclick = () => {
+            const isEditable = node => messageBox.contentEditable === 'true';
+            messageBox.contentEditable = isEditable(messageBox.contentEditable) 
+                ? 'false' 
+                : 'true';
+            editModeButton.innerHTML = isEditable(messageBox.contentEditable) 
+                ? 'EXIT EDIT MODE' 
+                : 'ENTER EDIT MODE';
+            if (!isEditable(messageBox.contentEditable)) {
+                socket.emit('edit', messageBox.innerHTML);
+            }
+        };
+
+        socket.on('message', msg => {
+            messageBox.innerHTML += `${msg} `;
+        });
+
+        socket.on('edit', msg => {
+            messageBox.innerHTML = msg;
+        });
+    </script>
+</body>
+
+</html>

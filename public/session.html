@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Home | Adab</title>
+    <link href="./assets/css/main.css" rel="stylesheet">
+    <link href="./assets/css/shimmer.css" rel="stylesheet">
+    <link href="./assets/img/adab.svg" rel="icon">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+
+<body>
+    <div class="reflex-layout">
+        <div class="reflex-sidebar">
+            <div class="sidebar-profile">
+                <a class="force-right padd-10 feather-button" href="#">
+                    <i class="ic-settings" data-feather="settings"></i>
+                </a>
+                <img alt="profile-pic"
+                     class="shine img-72 force-center"
+                     id="profile-pic"
+                     src="/api/v1/user/picture">
+                <div class="t-body2" id="profile-name" style="padding-top: 10px;"><shimmer-lines class="shine" id="name-shimmer"/></div>
+                <div class="t-body1" id="profile-email" style="padding-top: 4px"><shimmer-lines class="shine" id="email-shimmer"/></div>
+            </div>
+
+            <div class="sidebar-line"></div>
+            <div class="sidebar-navigation">
+                <a
+                        class="padd-10 feather-button navigation-button disabled"
+                        id="nav-dashboard"
+                        onclick="goToNavigation('nav-dashboard')">
+                    <i data-feather="home"></i>
+                    <span class="navigation-button-text">Dashboard</span>
+                </a>
+                <a
+                        class="padd-10 feather-button navigation-button"
+                        href="#"
+                        id="nav-inbox"
+                        onclick="goToNavigation('nav-inbox')">
+                    <i data-feather="inbox"></i>
+                    <span class="navigation-button-text">Inbox</span>
+                </a>
+                <a
+                        class="padd-10 feather-button navigation-button"
+                        href="#"
+                        id="nav-class"
+                        onclick="goToNavigation('nav-class')">
+                    <i data-feather="book"></i>
+                    <span class="navigation-button-text">Class</span>
+                </a>
+                <a
+                        class="padd-10 feather-button navigation-button"
+                        href="#"
+                        id="nav-discussion"
+                        onclick="goToNavigation('nav-discussion')">
+                    <i data-feather="message-square"></i>
+                    <span class="navigation-button-text">Discussion</span>
+                </a>
+                <a
+                        class="padd-10 feather-button navigation-button"
+                        href="#"
+                        id="nav-schedule"
+                        onclick="goToNavigation('nav-schedule')">
+                    <i data-feather="calendar"></i>
+                    <span class="navigation-button-text">Schedule</span>
+                </a>
+            </div>
+        </div>
+        <div class="reflex-content" id="view-dashboard">
+            <div class="content-layout">
+                <div class="announcement-layout">
+                    <div class="t-body2 announcement-header">Announcement</div>
+                    <div class="t-body1 announcement-details">Pengumuman Auto Debet Biaya Kuliah Semester Genap
+                        2018/2019</div>
+                </div>
+                <div class="content-double-pane">
+                    <div class="content-pane-lg">
+                        <section class="card-container">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                    <i class="mr-8 feather-button" data-feather="book-open"></i>
+                                    <div class="vertical-container">
+                                        <div id="title"></div>
+                                        <div class="t-caption" id="subtitle"></div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary" hidden id="start-talking" onclick="recognize()" type="button">Start Talking</button>
+                            </div>
+                            <div class="card-content-container no-hover">
+                                <span class="t-body1" id="transcript"></span><span class="blinking-cursor" hidden id="blinking-cursor">|</span>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="content-pane-sm">
+                        <section class="card-container">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                    <i class="mr-8 feather-button" data-feather="calendar"></i>
+                                    <div>Schedule</div>
+                                </div>
+                                <a class="card-header-btn t-body2" href="#">More</a>
+                            </div>
+                            <div class="card-content-container">
+                                <div class="t-caption">Upcoming classes starting in 11 hour(s) 27 minutes</div>
+                                <div class="mt-4 t-body2">F2F - Mobile Study (MOBI8869)</div>
+                                <div class="footer-container">
+                                    <div class="mt-8 mr-32 left-right-container">
+                                        <i class="mr-8 feather-button-sm" data-feather="clock"></i>
+                                        <div class="t-caption">September 27, 2019</div>
+                                    </div>
+                                    <div class="mt-8 left-right-container">
+                                        <i class="mr-8 feather-button-sm" data-feather="map-pin"></i>
+                                        <div class="t-caption">711A, Anggrek</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="card-container">
+                            <div class="card-header">
+                                <div class="card-header-title">
+                                    <i class="mr-8 feather-button" data-feather="message-square"></i>
+                                    <div>Discussion</div>
+                                </div>
+                                <a class="card-header-btn t-body2" href="#">More</a>
+                            </div>
+                            <div class="card-content-container">
+                                <div class="mt-4 t-body2">How do you create an android app with dev-cpp?</div>
+                                <div class="footer-container">
+                                    <img class="img-32 mt-8 mr-8 force-center" src="https://lh3.googleusercontent.com/iqpy39jjdR9tLIUQ3yrPZ3bT4TAK9RhgmaX5i462qQv41xm3UdpSHgoVztg0zEqJ00pqmPFMR9eJ43fWZVwG-w1hCerC8MTPKSM=w1600-rj">
+                                    <div class="vertical-container">
+                                        <div class="t-caption" style="font-weight: 500">Chandra Chou</div>
+                                        <div class="t-caption">Uploaded on September 16, 2019</div>
+                                    </div>
+                                </div>
+                                <div class="mt-8 t-caption">Di kelas kita masih diajarkan untuk menggunakan DBMS, padahal sudah ada teknologi terbaru yaitu RDBMS. Apakah DBMS memang... <a href="#" style="text-decoration: none; color: #007BFF;">(more)</a></div>
+                                <div class="footer-container">
+                                    <div class="mt-8 mr-32 left-right-container">
+                                        <i class="mr-8 feather-button-sm" data-feather="thumbs-up"></i>
+                                        <div class="t-caption">100</div>
+                                    </div>
+                                    <div class="mt-8 left-right-container">
+                                        <i class="mr-8 feather-button-sm" data-feather="message-square"></i>
+                                        <div class="t-caption">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-content-container">
+                                <div class="mt-4 t-body2">How do you create an android app with dev-cpp?</div>
+                                <div class="footer-container">
+                                    <img class="img-32 mt-8 mr-8 force-center" src="https://lh3.googleusercontent.com/iqpy39jjdR9tLIUQ3yrPZ3bT4TAK9RhgmaX5i462qQv41xm3UdpSHgoVztg0zEqJ00pqmPFMR9eJ43fWZVwG-w1hCerC8MTPKSM=w1600-rj">
+                                    <div class="vertical-container">
+                                        <div class="t-caption" style="font-weight: 500">Chandra Chou</div>
+                                        <div class="t-caption">Uploaded on September 16, 2019</div>
+                                    </div>
+                                </div>
+                                <div class="mt-8 t-caption">Di kelas kita masih diajarkan untuk menggunakan DBMS, padahal sudah ada teknologi terbaru yaitu RDBMS. Apakah DBMS memang... <a href="#" style="text-decoration: none; color: #007BFF;">(more)</a></div>
+                                <div class="footer-container">
+                                    <div class="mt-8 mr-32 left-right-container">
+                                        <i class="mr-8 feather-button-sm" data-feather="thumbs-up"></i>
+                                        <div class="t-caption">100</div>
+                                    </div>
+                                    <div class="mt-8 left-right-container">
+                                        <i class="mr-8 feather-button-sm" data-feather="message-square"></i>
+                                        <div class="t-caption">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="reflex-content invisible" id="view-inbox"><div>Hello</div></div>
+        <div class="reflex-content invisible" id="view-class">Cipret</div>
+        <div class="reflex-content invisible" id="view-discussion">Hasdaisdiasod</div>
+        <div class="reflex-content invisible" id="view-schedule">aaa</div>
+    </div>
+
+    <script src="./assets/js_modules/axios.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./assets/js/transcript.js"></script>
+    <script src="./assets/js/session.js"></script>
+    <script>
+        feather.replace()
+    </script>
+</body>
+
+</html>

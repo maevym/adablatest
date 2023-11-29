@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="icon" href="./assets/img/adab.svg">
+    <title>Login | Adab</title>
+</head>
+<body>
+    <main class="gravity-center">
+        <div class="card-login">
+            <img class="logo lg-margin-bottom lg-margin-top" src="./assets/img/adab.svg" alt="adab logo" />
+            <h6>SIGN IN</h6>
+            <form id="login-form" method="post" action="/login">
+                <div class="text-box-container">
+                    <img class="text-box-logo" src="./assets/img/ic-user.svg" alt="icon" />
+                    <input name="email" type="email" class="match-parent text-box" />
+                </div>
+                <div class="text-box-container">
+                    <img class="text-box-logo" src="./assets/img/ic-lock.svg" alt="icon" />
+                    <input name="password" type="password" class="match-parent text-box" />
+                </div>
+                <small id="error-msg" class="mt-8 t-caption" style="color: red !important; display: block; text-align: center;" hidden></small>
+                <button class="match-parent btn-primary btn-inline btn lg-margin-top" type="submit">LOG IN</button>
+            </form>
+            <small>Problem with login? <a href="#">Click Here</a></small>
+        </div>
+    </main>
+    <script src="./assets/js_modules/axios.js"></script>
+    <script src="assets/js/login.js"></script>
+</body>
+</html>
