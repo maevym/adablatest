@@ -625,3 +625,26 @@ exports.updatePassword = (req, res) => {
         }
     });
 }; 
+
+exports.getMessageHistory = (req, res) => {
+
+    const query = "SELECT message_tr, user_id, timestamp FROM t_message_log WHERE message_room_id = ? ORDER BY message_lo>
+
+    const {session_id: sessionId} = req.body;
+
+    if (sessionId == null) {
+        response.unauthorized("Unauthorized", res);
+    } else {
+        db.all(query, [sessionId], (error, row) => {
+            if (!error) {
+                if (row.length > 0) {
+                    response.ok(row, res);
+                } else {
+                    response.notFound("No message history found in this class.", res);
+                }
+            } else {
+                response.serverError(error, res);
+            }
+        });
+    }
+};
