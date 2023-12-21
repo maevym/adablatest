@@ -56,6 +56,9 @@ module.exports = function(app) {
 
      app.route('/api/v1/user/getTranscriptHistory')
          .post(todoList.getTranscriptHistory);
+
+    app.route('/api/v1/user/getMessageHistory')
+         .post(todoList.getMessageHistory);
     // app.route('/api/v1/session/details')
     //     .post(todoList.sessionDetails);
 
