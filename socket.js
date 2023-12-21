@@ -53,5 +53,29 @@ module.exports = http => {
     socket.on('disconnect', () => {
       console.log('a user disconnected');
     });
+
+    //chat message
+    socket.on('join_chatroom', roomId => {
+      socket.join(roomId);
+      connectedRoomId = roomId;
+      console.log('a user connected to chat room #' + roomId);
+
+      // Get the number of clients in 'room1'
+    });
+
+    socket.on('disconnect_chatroom', () => {
+      // Get the updated number of clients in 'room1' after a user disconnects
+      console.log('User disconnected');
+    });
+
+    socket.on('chatroom_message', (data) => {
+      // console.log(data)
+      socket.broadcast.emit('chatroom_message', data);
+
+      console.log("room id: " + data.connectedRoomId);
+      console.log("data" + data.user_id + data.msg);
+      const query = "INSERT INTO t_message_log (message_room_id, message_tr, user_id, timestamp) VALUES (?, ?, ?, ?)";
+      db.run(query, [data.connectedRoomId, data.msg, data.user_id, data.timestamp]);
+    });
   });
 };
