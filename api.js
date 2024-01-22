@@ -628,7 +628,7 @@ exports.updatePassword = (req, res) => {
 
 exports.getMessageHistory = (req, res) => {
 
-    const query = "SELECT message_tr, user_id, timestamp FROM t_message_log WHERE message_room_id = ? ORDER BY message_log_id>
+    const query = "SELECT message_tr, user_id, timestamp FROM t_message_log WHERE message_room_id = ? ORDER BY message_log_id";
 
     const {session_id: sessionId} = req.body;
 
