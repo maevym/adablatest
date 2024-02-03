@@ -601,8 +601,8 @@ exports.register = (req, res) => {
 };
 
 exports.updatePassword = (req, res) => {
-    const {user_secret: userSecret, user_oldPassword: userOldPassword, user_newPassword = userNewPassword} = req.body;
-    const query = "SELECT user_id FROM t_user WHERE user_unique = ? AND password = ?";
+    const {user_secret: userSecret, user_oldPassword: userOldPassword, user_newPassword = userNewPassword} : req.body;
+    const query = "SELECT user_id FROM t_user WHERE user_secret = ? AND password = ?";
 
     db.all (query, [userSecret, md5(userOldPassword)], function(error, row) {
         if (!error) {
